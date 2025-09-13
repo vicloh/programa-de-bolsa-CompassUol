@@ -1,6 +1,6 @@
 import random
 from datetime import datetime, timedelta
-
+#testando o AmazonQ para geração de código e testes
 def get_random_booking_data():
     firstnames = ["João", "Maria", "Pedro", "Ana", "Carlos", "Lucia", "Rafael", "Fernanda"]
     lastnames = ["Silva", "Santos", "Oliveira", "Souza", "Costa", "Pereira", "Almeida", "Ferreira"]
