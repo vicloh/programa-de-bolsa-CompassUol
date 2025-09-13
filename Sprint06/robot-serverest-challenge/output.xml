@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-12T14:17:00.409916" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests">
+<suite id="s1-s1" name="Produtos" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests\produtos.robot">
+<kw name="Setup de Login para Suite de Testes" owner="api_keywords" type="SETUP">
+<kw name="Iniciar Sessão da API" owner="api_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-12T14:17:01.889861" level="INFO">Creating Session using : alias=serverest, url=http://3.86.250.45:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-12T14:17:01.889415" elapsed="0.001298"/>
+</kw>
+<status status="PASS" start="2025-09-12T14:17:01.880413" elapsed="0.011187"/>
+</kw>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2025-09-12T14:17:01.892428" level="INFO">${random_name} = Maria Lopes</msg>
+<var>${random_name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2025-09-12T14:17:01.891953" elapsed="0.000537"/>
+</kw>
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-12T14:17:01.893531" level="INFO">${random_email} = hcarvalho@example.org</msg>
+<var>${random_email}</var>
+<status status="PASS" start="2025-09-12T14:17:01.893165" elapsed="0.000427"/>
+</kw>
+<kw name="Password" owner="FakerLibrary">
+<msg time="2025-09-12T14:17:01.895228" level="INFO">${random_password} = a*5SL^nq#m</msg>
+<var>${random_password}</var>
+<doc>Generate a random password of the specified ``length``.</doc>
+<status status="PASS" start="2025-09-12T14:17:01.893825" elapsed="0.001482"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-12T14:17:01.897435" level="INFO">&amp;{user} = { nome=Maria Lopes | email=hcarvalho@example.org | password=a*5SL^nq#m | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=${random_name}</arg>
+<arg>email=${random_email}</arg>
+<arg>password=${random_password}</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-12T14:17:01.895554" elapsed="0.001949"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-12T14:17:04.694987" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5252AF90&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:07.705557" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255AFD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:10.909503" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255B250&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:13.731135" level="FAIL">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-12T14:17:01.898379" elapsed="11.849608">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-09-12T14:17:13.748237" elapsed="0.000052"/>
+</return>
+<var>${response}</var>
+<arg>${user}</arg>
+<status status="FAIL" start="2025-09-12T14:17:01.897832" elapsed="11.851658">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:13.749776" elapsed="0.000090"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${credentials}</var>
+<arg>email=${user}[email]</arg>
+<arg>password=${user}[password]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:13.750079" elapsed="0.000037"/>
+</kw>
+<kw name="Realizar Login e Armazenar Token" owner="api_keywords">
+<arg>${credentials}</arg>
+<status status="NOT RUN" start="2025-09-12T14:17:13.750399" elapsed="0.000161"/>
+</kw>
+<status status="FAIL" start="2025-09-12T14:17:01.879698" elapsed="11.871065">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<test id="s1-s1-t1" name="CT-011: Cadastrar um novo produto com sucesso (autenticado)" line="7">
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="FAIL" start="2025-09-12T14:17:13.751172" elapsed="0.001895">Parent suite setup failed:
+ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</test>
+<test id="s1-s1-t2" name="CT-012: Tentar cadastrar um produto sem token de autenticação" line="20">
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="FAIL" start="2025-09-12T14:17:13.756183" elapsed="0.001014">Parent suite setup failed:
+ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</test>
+<status status="FAIL" start="2025-09-12T14:17:00.477416" elapsed="13.283172">Suite setup failed:
+ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</suite>
+<suite id="s1-s2" name="Usuarios" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests\usuarios.robot">
+<kw name="Iniciar Sessão da API" owner="api_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-12T14:17:13.774314" level="INFO">Creating Session using : alias=serverest, url=http://3.86.250.45:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-12T14:17:13.774030" elapsed="0.000638"/>
+</kw>
+<status status="PASS" start="2025-09-12T14:17:13.773626" elapsed="0.001751"/>
+</kw>
+<test id="s1-s2-t1" name="CT-001: Cadastrar um novo usuário com dados válidos" line="7">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-12T14:17:13.779242" level="INFO">${email} = jguerra@example.org</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-12T14:17:13.777768" elapsed="0.001532"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-12T14:17:13.782528" level="INFO">&amp;{user} = { nome=Robot Framework User | email=jguerra@example.org | password=teste | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Robot Framework User</arg>
+<arg>email=${email}</arg>
+<arg>password=teste</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-12T14:17:13.780003" elapsed="0.002827"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-12T14:17:16.593557" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52630050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:19.590202" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52533890&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:22.819862" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D58C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:25.660578" level="FAIL">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-12T14:17:13.787347" elapsed="11.886006">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-09-12T14:17:25.673555" elapsed="0.000053"/>
+</return>
+<var>${response}</var>
+<arg>${user}</arg>
+<status status="FAIL" start="2025-09-12T14:17:13.786592" elapsed="11.887209">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:25.674392" elapsed="0.000053"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${response.json()}</arg>
+<arg>_id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:25.676406" elapsed="0.000102"/>
+</kw>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="FAIL" start="2025-09-12T14:17:13.775520" elapsed="11.901746">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</test>
+<test id="s1-s2-t2" name="CT-002: Tentar cadastrar um usuário com um e-mail já existente" line="15">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-12T14:17:25.683577" level="INFO">${email} = silveirasophie@example.net</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-12T14:17:25.683180" elapsed="0.000451"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-12T14:17:25.684499" level="INFO">&amp;{user} = { nome=Teste Duplicado | email=silveirasophie@example.net | password=teste | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Teste Duplicado</arg>
+<arg>email=${email}</arg>
+<arg>password=teste</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-12T14:17:25.683958" elapsed="0.000594"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-12T14:17:28.529859" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D69C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:31.538548" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D6F10&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:34.732601" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7240&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:37.571911" level="FAIL">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-12T14:17:25.685934" elapsed="11.901157">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-09-12T14:17:37.587333" elapsed="0.000045"/>
+</return>
+<var>${response1}</var>
+<arg>${user}</arg>
+<status status="FAIL" start="2025-09-12T14:17:25.685274" elapsed="11.902316">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response1.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:37.588005" elapsed="0.000047"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${response2}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:37.588564" elapsed="0.000051"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response2.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:37.589036" elapsed="0.000108"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response2.json()}[message]</arg>
+<arg>Este email já está sendo usado</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:37.591041" elapsed="0.000060"/>
+</kw>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="FAIL" start="2025-09-12T14:17:25.681417" elapsed="11.910856">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</test>
+<test id="s1-s2-t3" name="CT-003: Listar todos os usuários cadastrados" line="28">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-09-12T14:17:40.427195" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:43.484807" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714380&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:46.909197" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B527146B0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-12T14:17:37.595925" elapsed="12.169416">Execution terminated by signal</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:49.765755" elapsed="0.000049"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${response.json()}</arg>
+<arg>usuarios</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:49.766104" elapsed="0.000028"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${users_list}</var>
+<arg>${response.json()}</arg>
+<arg>usuarios</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:49.766325" elapsed="0.000022"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Total de usuários encontrados: ${response.json()}[quantidade]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:49.766535" elapsed="0.000024"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Lista de usuários: ${users_list}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2025-09-12T14:17:49.766738" elapsed="0.000023"/>
+</kw>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="FAIL" start="2025-09-12T14:17:37.594638" elapsed="12.172494">Execution terminated by signal</status>
+</test>
+<test id="s1-s2-t4" name="CT-007: Deletar um usuário existente com sucesso" line="37">
+<tag>robot:exit</tag>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="FAIL" start="2025-09-12T14:17:49.770344" elapsed="0.001226">Test execution stopped due to a fatal error.</status>
+</test>
+<status status="FAIL" start="2025-09-12T14:17:13.762434" elapsed="36.012722"/>
+</suite>
+<status status="FAIL" start="2025-09-12T14:17:00.412513" elapsed="49.367697"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="6" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat info="combined" combined="NOT robot:exit" pass="0" fail="5" skip="0">NOT robot:exit</stat>
+<stat pass="0" fail="2" skip="0">Produtos</stat>
+<stat pass="0" fail="4" skip="0">US-001</stat>
+<stat pass="0" fail="2" skip="0">US-003</stat>
+<stat pass="0" fail="4" skip="0">Usuarios</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="0" fail="6" skip="0">Tests</stat>
+<stat name="Produtos" id="s1-s1" pass="0" fail="2" skip="0">Tests.Produtos</stat>
+<stat name="Usuarios" id="s1-s2" pass="0" fail="4" skip="0">Tests.Usuarios</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-09-12T14:17:04.694987" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5252AF90&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:07.705557" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255AFD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:10.909503" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255B250&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:16.593557" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52630050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:19.590202" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52533890&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:22.819862" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D58C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:28.529859" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D69C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:31.538548" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D6F10&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:34.732601" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7240&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:40.427195" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:43.484807" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714380&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-12T14:17:46.909197" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B527146B0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+</errors>
+</robot>
