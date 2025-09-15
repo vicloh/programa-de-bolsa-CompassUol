@@ -1,315 +1,2228 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-12T14:17:00.409916" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-15T17:39:02.123577" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests">
-<suite id="s1-s1" name="Produtos" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests\produtos.robot">
-<kw name="Setup de Login para Suite de Testes" owner="api_keywords" type="SETUP">
-<kw name="Iniciar Sessão da API" owner="api_keywords">
+<suite id="s1-s1" name="Login" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests\login.robot">
+<kw name="Iniciar Sessão da API" owner="api_keywords" type="SETUP">
 <kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-09-12T14:17:01.889861" level="INFO">Creating Session using : alias=serverest, url=http://3.86.250.45:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg time="2025-09-15T17:39:02.892451" level="INFO">Creating Session using : alias=serverest, url=http://3.86.250.45:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
 <arg>serverest</arg>
 <arg>${BASE_URL}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-09-12T14:17:01.889415" elapsed="0.001298"/>
+<status status="PASS" start="2025-09-15T17:39:02.892229" elapsed="0.000428"/>
 </kw>
-<status status="PASS" start="2025-09-12T14:17:01.880413" elapsed="0.011187"/>
+<status status="PASS" start="2025-09-15T17:39:02.891342" elapsed="0.001406"/>
 </kw>
-<kw name="Name" owner="FakerLibrary">
-<msg time="2025-09-12T14:17:01.892428" level="INFO">${random_name} = Maria Lopes</msg>
-<var>${random_name}</var>
-<doc>:example: 'John Doe'</doc>
-<status status="PASS" start="2025-09-12T14:17:01.891953" elapsed="0.000537"/>
-</kw>
+<test id="s1-s1-t1" name="CT-010: Realizar login com sucesso" line="8">
 <kw name="Email" owner="FakerLibrary">
-<msg time="2025-09-12T14:17:01.893531" level="INFO">${random_email} = hcarvalho@example.org</msg>
-<var>${random_email}</var>
-<status status="PASS" start="2025-09-12T14:17:01.893165" elapsed="0.000427"/>
-</kw>
-<kw name="Password" owner="FakerLibrary">
-<msg time="2025-09-12T14:17:01.895228" level="INFO">${random_password} = a*5SL^nq#m</msg>
-<var>${random_password}</var>
-<doc>Generate a random password of the specified ``length``.</doc>
-<status status="PASS" start="2025-09-12T14:17:01.893825" elapsed="0.001482"/>
+<msg time="2025-09-15T17:39:02.893718" level="INFO">${email} = sdas-neves@example.net</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:39:02.893442" elapsed="0.000310"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-12T14:17:01.897435" level="INFO">&amp;{user} = { nome=Maria Lopes | email=hcarvalho@example.org | password=a*5SL^nq#m | administrador=true }</msg>
+<msg time="2025-09-15T17:39:02.894307" level="INFO">&amp;{user} = { nome=Usuario Login | email=sdas-neves@example.net | password=teste123 | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Usuario Login</arg>
+<arg>email=${email}</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:39:02.893963" elapsed="0.000374"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:39:03.219222" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '109', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Login", "email": "sdas-neves@example.net", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:39:03.219430" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:39:03 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "nzgGQ67AvM57on95"
+} 
+ </msg>
+<msg time="2025-09-15T17:39:03.219647" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:39:02.895135" elapsed="0.324569"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:39:03.219870" elapsed="0.000082"/>
+</return>
+<msg time="2025-09-15T17:39:03.220247" level="INFO">${response_create} = &lt;Response [201]&gt;</msg>
+<var>${response_create}</var>
+<arg>${user}</arg>
+<status status="PASS" start="2025-09-15T17:39:02.894730" elapsed="0.325578"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.221462" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response_create.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.220685" elapsed="0.000851"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.222164" level="INFO">&amp;{credentials} = { email=sdas-neves@example.net | password=teste123 }</msg>
+<var>&amp;{credentials}</var>
+<arg>email=${email}</arg>
+<arg>password=teste123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.221844" elapsed="0.000354"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:39:03.380587" level="INFO">POST Request : url=http://3.86.250.45:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '59', 'Content-Type': 'application/json'} 
+ body=b'{"email": "sdas-neves@example.net", "password": "teste123"}' 
+ </msg>
+<msg time="2025-09-15T17:39:03.381202" level="INFO">POST Response : url=http://3.86.250.45:3000/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '281', 'Date': 'Mon, 15 Sep 2025 20:39:03 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNkYXMtbmV2ZXNAZXhhbXBsZS5uZXQiLCJwYXNzd29yZCI6InRlc3RlMTIzIiwiaWF0IjoxNzU3OTY4NzQzLCJleHAiOjE3NTc5NjkzNDN9.4YtuVtSipMVeNhJ_2KMjmLGfyrD3zbzlV1-JA-ZACSA"
+} 
+ </msg>
+<msg time="2025-09-15T17:39:03.381663" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${credentials}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.222423" elapsed="0.159341"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.385938" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.382575" elapsed="0.004846"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${response.json()}</arg>
+<arg>authorization</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.389175" elapsed="0.002355"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Login realizado com sucesso</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.392341" elapsed="0.002174"/>
+</kw>
+<doc>AC: Usuários existentes e com a senha correta deverão ser autenticados e A autenticação deverá gerar um token Bearer</doc>
+<tag>Login</tag>
+<tag>US-002</tag>
+<status status="PASS" start="2025-09-15T17:39:02.892814" elapsed="0.505751"/>
+</test>
+<test id="s1-s1-t2" name="CT-011: Tentar login com senha inválida" line="24">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:39:03.416061" level="INFO">${email} = salmeida@example.org</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:39:03.408129" elapsed="0.008016"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.418798" level="INFO">&amp;{user} = { nome=Usuario Senha Errada | email=salmeida@example.org | password=teste123 | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Usuario Senha Errada</arg>
+<arg>email=${email}</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.416876" elapsed="0.002028"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:39:03.576515" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '114', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Senha Errada", "email": "salmeida@example.org", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:39:03.577214" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:39:03 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "w9ixGWd8iMLMgS1h"
+} 
+ </msg>
+<msg time="2025-09-15T17:39:03.577584" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.421284" elapsed="0.156382"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:39:03.577898" elapsed="0.000163"/>
+</return>
+<msg time="2025-09-15T17:39:03.578526" level="INFO">${response_create} = &lt;Response [201]&gt;</msg>
+<var>${response_create}</var>
+<arg>${user}</arg>
+<status status="PASS" start="2025-09-15T17:39:03.420730" elapsed="0.158370"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.581367" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response_create.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.580179" elapsed="0.001297"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.582411" level="INFO">&amp;{credentials} = { email=salmeida@example.org | password=senhaerrada }</msg>
+<var>&amp;{credentials}</var>
+<arg>email=${email}</arg>
+<arg>password=senhaerrada</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.581950" elapsed="0.000512"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:39:03.737485" level="INFO">POST Request : url=http://3.86.250.45:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "salmeida@example.org", "password": "senhaerrada"}' 
+ </msg>
+<msg time="2025-09-15T17:39:03.737687" level="INFO">POST Response : url=http://3.86.250.45:3000/login 
+ status=401, reason=Unauthorized 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '48', 'Date': 'Mon, 15 Sep 2025 20:39:03 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Email e/ou senha inválidos"
+} 
+ </msg>
+<msg time="2025-09-15T17:39:03.737993" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${credentials}</arg>
+<arg>expected_status=401</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.582887" elapsed="0.155194"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.741541" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>401</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.740104" elapsed="0.001576"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Email e/ou senha inválidos</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.742140" elapsed="0.001370"/>
+</kw>
+<doc>AC: Usuários com senha inválida não deverão conseguir autenticar e No caso de não autenticação, deverá ser retornado um status code 401</doc>
+<tag>Login</tag>
+<tag>US-002</tag>
+<status status="PASS" start="2025-09-15T17:39:03.405509" elapsed="0.338387"/>
+</test>
+<test id="s1-s1-t3" name="CT-012: Tentar login com usuário não cadastrado" line="39">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:39:03.748613" level="INFO">${email} = aabreu@example.com</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:39:03.748193" elapsed="0.000484"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.750011" level="INFO">&amp;{credentials} = { email=aabreu@example.com | password=qualquersenha }</msg>
+<var>&amp;{credentials}</var>
+<arg>email=${email}</arg>
+<arg>password=qualquersenha</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.749338" elapsed="0.000738"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:39:03.915592" level="INFO">POST Request : url=http://3.86.250.45:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "aabreu@example.com", "password": "qualquersenha"}' 
+ </msg>
+<msg time="2025-09-15T17:39:03.915789" level="INFO">POST Response : url=http://3.86.250.45:3000/login 
+ status=401, reason=Unauthorized 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '48', 'Date': 'Mon, 15 Sep 2025 20:39:03 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Email e/ou senha inválidos"
+} 
+ </msg>
+<msg time="2025-09-15T17:39:03.916060" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${credentials}</arg>
+<arg>expected_status=401</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.750795" elapsed="0.165327"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.918605" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>401</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.917316" elapsed="0.001668"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Email e/ou senha inválidos</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.921325" elapsed="0.001056"/>
+</kw>
+<doc>AC: Usuários não cadastrados não deverão conseguir autenticar e No caso de não autenticação, deverá ser retornado um status code 401</doc>
+<tag>Login</tag>
+<tag>US-002</tag>
+<status status="PASS" start="2025-09-15T17:39:03.745931" elapsed="0.176918"/>
+</test>
+<test id="s1-s1-t4" name="CT-013: Validar tempo de expiração do token" line="48">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:39:03.927170" level="INFO">${email} = caleb44@example.org</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:39:03.926586" elapsed="0.000645"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:39:03.928129" level="INFO">&amp;{user} = { nome=Usuario Token Expira | email=caleb44@example.org | password=teste123 | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Usuario Token Expira</arg>
+<arg>email=${email}</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.927610" elapsed="0.000582"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:39:04.085382" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '113', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Token Expira", "email": "caleb44@example.org", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:39:04.091233" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:39:03 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "gznI0sOsYZ6VxTr4"
+} 
+ </msg>
+<msg time="2025-09-15T17:39:04.092167" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:39:03.929459" elapsed="0.162857"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:39:04.093241" elapsed="0.000982"/>
+</return>
+<msg time="2025-09-15T17:39:04.095440" level="INFO">${response_create} = &lt;Response [201]&gt;</msg>
+<var>${response_create}</var>
+<arg>${user}</arg>
+<status status="PASS" start="2025-09-15T17:39:03.928990" elapsed="0.166611"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:39:04.101853" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response_create.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:39:04.099981" elapsed="0.002078"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:39:04.104885" level="INFO">&amp;{credentials} = { email=caleb44@example.org | password=teste123 }</msg>
+<var>&amp;{credentials}</var>
+<arg>email=${email}</arg>
+<arg>password=teste123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:39:04.103979" elapsed="0.001003"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:39:04.261463" level="INFO">POST Request : url=http://3.86.250.45:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '56', 'Content-Type': 'application/json'} 
+ body=b'{"email": "caleb44@example.org", "password": "teste123"}' 
+ </msg>
+<msg time="2025-09-15T17:39:04.261623" level="INFO">POST Response : url=http://3.86.250.45:3000/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '277', 'Date': 'Mon, 15 Sep 2025 20:39:04 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViNDRAZXhhbXBsZS5vcmciLCJwYXNzd29yZCI6InRlc3RlMTIzIiwiaWF0IjoxNzU3OTY4NzQ0LCJleHAiOjE3NTc5NjkzNDR9.wQqd-lhRLwuAE7PawzVg5IwsFmhooY1GA4g4ladEdsE"
+} 
+ </msg>
+<msg time="2025-09-15T17:39:04.261817" level="INFO">${response_login} = &lt;Response [200]&gt;</msg>
+<var>${response_login}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${credentials}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:39:04.105775" elapsed="0.156088"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-09-15T17:39:04.263568" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViNDRAZXhhbXBsZS5vcmciLCJwYXNzd29yZCI6InRlc3RlMTIzIiwiaWF0IjoxNzU3OTY4NzQ0LCJleHAiOjE3NTc5NjkzNDR9.wQqd-lhRLwuAE7PawzVg5IwsFmhooY1GA4g4lad...</msg>
+<var>${token}</var>
+<arg>${response_login.json()}</arg>
+<arg>authorization</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-09-15T17:39:04.262537" elapsed="0.001089"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Aguardando 11 minutos para testar expiração do token...</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:39:04.263998" elapsed="0.000640"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-09-15T17:50:04.287936" level="INFO">Slept 11 minutes.</msg>
+<arg>660s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-09-15T17:39:04.265175" elapsed="660.030746"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:04.300044" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViNDRAZXhhbXBsZS5vcmciLCJwYXNzd29yZCI6InRlc3RlMTIzIiwiaWF0IjoxNzU3OTY4NzQ0LCJleHAiOjE3NTc5NjkzNDR9.wQqd-lhRLwuAE7PawzVg...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.298991" elapsed="0.001123"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:04.616934" level="INFO">GET Request : url=http://3.86.250.45:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViNDRAZXhhbXBsZS5vcmciLCJwYXNzd29yZCI6InRlc3RlMTIzIiwiaWF0IjoxNzU3OTY4NzQ0LCJleHAiOjE3NTc5NjkzNDR9.wQqd-lhRLwuAE7PawzVg5IwsFmhooY1GA4g4ladEdsE'} 
+ body=None 
+ </msg>
+<msg time="2025-09-15T17:50:04.617060" level="INFO">GET Response : url=http://3.86.250.45:3000/produtos 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '435', 'Date': 'Mon, 15 Sep 2025 20:50:04 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "quantidade": 2,
+    "produtos": [
+        {
+            "nome": "Logitech MX Vertical",
+            "preco": 470,
+            "descricao": "Mouse",
+            "quantidade": 382,
+            "_id": "BeeJh5lz3k6kSIzA"
+        },
+        {
+            "nome": "Samsung 60 polegadas",
+            "preco": 5240,
+            "descricao": "TV",
+            "quantidade": 49977,
+            "_id": "K6leHdftCeOJj8BJ"
+        }
+    ]
+} 
+ </msg>
+<msg time="2025-09-15T17:50:04.617327" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.300756" elapsed="0.316613"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:04.619621" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.618853" elapsed="0.000885"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.620086" elapsed="0.001192"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>❌ CRITÉRIO DE ACEITAÇÃO NÃO IMPLEMENTADO</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.623294" elapsed="0.001990"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.625765" elapsed="0.003160"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📋 US-002: [API] Login</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.632673" elapsed="0.001071"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔍 CT-013: Validar tempo de expiração do token</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.634356" elapsed="0.001020"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📝 AC Esperado: "A duração da validade do token deverá ser de 10 minutos"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.635930" elapsed="0.000899"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>⚠️</arg>
+<arg>Comportamento Real: Token permanece válido após 11 minutos</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.645764" elapsed="0.002616"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>💡 Status: NÃO IMPLEMENTADO na API ServeRest</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.648758" elapsed="0.000492"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.649644" elapsed="0.009033"/>
+</kw>
+<doc>AC: A duração da validade do token deverá ser de 10 minutos</doc>
+<tag>Login</tag>
+<tag>Slow</tag>
+<tag>US-002</tag>
+<status status="PASS" start="2025-09-15T17:39:03.925003" elapsed="660.734104"/>
+</test>
+<status status="PASS" start="2025-09-15T17:39:02.173080" elapsed="662.489329"/>
+</suite>
+<suite id="s1-s2" name="Produtos" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests\produtos.robot">
+<kw name="Setup de Login para Suite de Testes" owner="api_keywords" type="SETUP">
+<kw name="Iniciar Sessão da API" owner="api_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:04.692797" level="INFO">Creating Session using : alias=serverest, url=http://3.86.250.45:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-15T17:50:04.692517" elapsed="0.000601"/>
+</kw>
+<status status="PASS" start="2025-09-15T17:50:04.692204" elapsed="0.001038"/>
+</kw>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:04.693754" level="INFO">${random_name} = Luiz Fernando Monteiro</msg>
+<var>${random_name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2025-09-15T17:50:04.693410" elapsed="0.000398"/>
+</kw>
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:04.694525" level="INFO">${random_email} = cardosodiogo@example.org</msg>
+<var>${random_email}</var>
+<status status="PASS" start="2025-09-15T17:50:04.694138" elapsed="0.000455"/>
+</kw>
+<kw name="Password" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:04.695184" level="INFO">${random_password} = ^J#U1^Snt^</msg>
+<var>${random_password}</var>
+<doc>Generate a random password of the specified ``length``.</doc>
+<status status="PASS" start="2025-09-15T17:50:04.694797" elapsed="0.000468"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:04.696552" level="INFO">&amp;{user} = { nome=Luiz Fernando Monteiro | email=cardosodiogo@example.org | password=^J#U1^Snt^ | administrador=true }</msg>
 <var>&amp;{user}</var>
 <arg>nome=${random_name}</arg>
 <arg>email=${random_email}</arg>
 <arg>password=${random_password}</arg>
 <arg>administrador=true</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-12T14:17:01.895554" elapsed="0.001949"/>
+<status status="PASS" start="2025-09-15T17:50:04.695691" elapsed="0.000927"/>
 </kw>
 <kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
 <kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-09-12T14:17:04.694987" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5252AF90&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:07.705557" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255AFD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:10.909503" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255B250&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:13.731135" level="FAIL">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</msg>
+<msg time="2025-09-15T17:50:05.003273" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '122', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Luiz Fernando Monteiro", "email": "cardosodiogo@example.org", "password": "^J#U1^Snt^", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:05.003395" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:04 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "Al8UfSKKX8lFauDR"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:05.003569" level="INFO">${response} = &lt;Response [201]&gt;</msg>
 <var>${response}</var>
 <arg>serverest</arg>
 <arg>/usuarios</arg>
 <arg>json=${user_data}</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-09-12T14:17:01.898379" elapsed="11.849608">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<status status="PASS" start="2025-09-15T17:50:04.697442" elapsed="0.306166"/>
 </kw>
 <return>
 <value>${response}</value>
-<status status="NOT RUN" start="2025-09-12T14:17:13.748237" elapsed="0.000052"/>
+<status status="PASS" start="2025-09-15T17:50:05.003700" elapsed="0.000059"/>
 </return>
+<msg time="2025-09-15T17:50:05.004393" level="INFO">${response} = &lt;Response [201]&gt;</msg>
 <var>${response}</var>
 <arg>${user}</arg>
-<status status="FAIL" start="2025-09-12T14:17:01.897832" elapsed="11.851658">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<status status="PASS" start="2025-09-15T17:50:04.696995" elapsed="0.307458"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.005689" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>201</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:13.749776" elapsed="0.000090"/>
+<status status="PASS" start="2025-09-15T17:50:05.004682" elapsed="0.001128"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.007292" level="INFO">${credentials} = {'email': 'cardosodiogo@example.org', 'password': '^J#U1^Snt^'}</msg>
 <var>${credentials}</var>
 <arg>email=${user}[email]</arg>
 <arg>password=${user}[password]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:13.750079" elapsed="0.000037"/>
+<status status="PASS" start="2025-09-15T17:50:05.006542" elapsed="0.001171"/>
 </kw>
 <kw name="Realizar Login e Armazenar Token" owner="api_keywords">
-<arg>${credentials}</arg>
-<status status="NOT RUN" start="2025-09-12T14:17:13.750399" elapsed="0.000161"/>
-</kw>
-<status status="FAIL" start="2025-09-12T14:17:01.879698" elapsed="11.871065">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
-</kw>
-<test id="s1-s1-t1" name="CT-011: Cadastrar um novo produto com sucesso (autenticado)" line="7">
-<tag>Produtos</tag>
-<tag>US-003</tag>
-<status status="FAIL" start="2025-09-12T14:17:13.751172" elapsed="0.001895">Parent suite setup failed:
-ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
-</test>
-<test id="s1-s1-t2" name="CT-012: Tentar cadastrar um produto sem token de autenticação" line="20">
-<tag>Produtos</tag>
-<tag>US-003</tag>
-<status status="FAIL" start="2025-09-12T14:17:13.756183" elapsed="0.001014">Parent suite setup failed:
-ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
-</test>
-<status status="FAIL" start="2025-09-12T14:17:00.477416" elapsed="13.283172">Suite setup failed:
-ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52631CD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
-</suite>
-<suite id="s1-s2" name="Usuarios" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests\usuarios.robot">
-<kw name="Iniciar Sessão da API" owner="api_keywords" type="SETUP">
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-09-12T14:17:13.774314" level="INFO">Creating Session using : alias=serverest, url=http://3.86.250.45:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>serverest</arg>
-<arg>${BASE_URL}</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-09-12T14:17:13.774030" elapsed="0.000638"/>
-</kw>
-<status status="PASS" start="2025-09-12T14:17:13.773626" elapsed="0.001751"/>
-</kw>
-<test id="s1-s2-t1" name="CT-001: Cadastrar um novo usuário com dados válidos" line="7">
-<kw name="Email" owner="FakerLibrary">
-<msg time="2025-09-12T14:17:13.779242" level="INFO">${email} = jguerra@example.org</msg>
-<var>${email}</var>
-<status status="PASS" start="2025-09-12T14:17:13.777768" elapsed="0.001532"/>
-</kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-12T14:17:13.782528" level="INFO">&amp;{user} = { nome=Robot Framework User | email=jguerra@example.org | password=teste | administrador=true }</msg>
-<var>&amp;{user}</var>
-<arg>nome=Robot Framework User</arg>
-<arg>email=${email}</arg>
-<arg>password=teste</arg>
-<arg>administrador=true</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-12T14:17:13.780003" elapsed="0.002827"/>
-</kw>
-<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
 <kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-09-12T14:17:16.593557" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52630050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:19.590202" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52533890&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:22.819862" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D58C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:25.660578" level="FAIL">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</msg>
+<msg time="2025-09-15T17:50:05.165470" level="INFO">POST Request : url=http://3.86.250.45:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '63', 'Content-Type': 'application/json'} 
+ body=b'{"email": "cardosodiogo@example.org", "password": "^J#U1^Snt^"}' 
+ </msg>
+<msg time="2025-09-15T17:50:05.165705" level="INFO">POST Response : url=http://3.86.250.45:3000/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '287', 'Date': 'Mon, 15 Sep 2025 20:50:05 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72A7guPAoXFmGckg"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:05.165891" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
 <arg>serverest</arg>
-<arg>/usuarios</arg>
-<arg>json=${user_data}</arg>
+<arg>/login</arg>
+<arg>json=${credentials}</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-09-12T14:17:13.787347" elapsed="11.886006">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<status status="PASS" start="2025-09-15T17:50:05.008787" elapsed="0.157149"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.166872" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.166131" elapsed="0.000850"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-09-15T17:50:05.168087" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72...</msg>
+<var>${token}</var>
+<arg>${response.json()}</arg>
+<arg>authorization</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.167163" elapsed="0.000977"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.169481" level="INFO">${AUTH_TOKEN} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72...</msg>
+<arg>${AUTH_TOKEN}</arg>
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.168336" elapsed="0.001349"/>
+</kw>
+<arg>${credentials}</arg>
+<status status="PASS" start="2025-09-15T17:50:05.008296" elapsed="0.161497"/>
+</kw>
+<status status="PASS" start="2025-09-15T17:50:04.691670" elapsed="0.478183"/>
+</kw>
+<test id="s1-s2-t1" name="CT-014: Cadastrar produto com sucesso (autenticado)" line="7">
+<kw name="Random Number" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:05.171115" level="INFO">${unique_id} = 808744</msg>
+<var>${unique_id}</var>
+<arg>digits=6</arg>
+<doc>Generate a random integer according to the following rules:</doc>
+<status status="PASS" start="2025-09-15T17:50:05.170693" elapsed="0.000472"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.173196" level="INFO">&amp;{product} = { nome=Produto Teste 808744 | preco=500 | descricao=Produto para teste | quantidade=100 }</msg>
+<var>&amp;{product}</var>
+<arg>nome=Produto Teste ${unique_id}</arg>
+<arg>preco=500</arg>
+<arg>descricao=Produto para teste</arg>
+<arg>quantidade=100</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.172685" elapsed="0.000564"/>
+</kw>
+<kw name="Cadastrar Novo Produto via API" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.177677" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.177247" elapsed="0.000490"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:05.335545" level="INFO">POST Request : url=http://3.86.250.45:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72A7guPAoXFmGckg', 'Content-Length': '104', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto Teste 808744", "preco": "500", "descricao": "Produto para teste", "quantidade": "100"}' 
+ </msg>
+<msg time="2025-09-15T17:50:05.335665" level="INFO">POST Response : url=http://3.86.250.45:3000/produtos 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:05 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "SAtc1XeqG3dBlovS"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:05.335830" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${product_data}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.177944" elapsed="0.157933"/>
 </kw>
 <return>
 <value>${response}</value>
-<status status="NOT RUN" start="2025-09-12T14:17:25.673555" elapsed="0.000053"/>
+<status status="PASS" start="2025-09-15T17:50:05.336106" elapsed="0.000083"/>
 </return>
+<msg time="2025-09-15T17:50:05.336483" level="INFO">${response} = &lt;Response [201]&gt;</msg>
 <var>${response}</var>
-<arg>${user}</arg>
-<status status="FAIL" start="2025-09-12T14:17:13.786592" elapsed="11.887209">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<arg>${product}</arg>
+<arg>${AUTH_TOKEN}</arg>
+<status status="PASS" start="2025-09-15T17:50:05.176510" elapsed="0.160103"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.345329" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>201</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:25.674392" elapsed="0.000053"/>
+<status status="PASS" start="2025-09-15T17:50:05.343843" elapsed="0.001603"/>
 </kw>
-<kw name="Dictionary Should Contain Key" owner="Collections">
-<arg>${response.json()}</arg>
-<arg>_id</arg>
-<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:25.676406" elapsed="0.000102"/>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Cadastro realizado com sucesso</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.351429" elapsed="0.000976"/>
 </kw>
-<tag>US-001</tag>
-<tag>Usuarios</tag>
-<status status="FAIL" start="2025-09-12T14:17:13.775520" elapsed="11.901746">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D5BF0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<doc>DoD: CRUD de cadastro de Produtos implementado (CRIAR)</doc>
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="PASS" start="2025-09-15T17:50:05.169921" elapsed="0.194253"/>
 </test>
-<test id="s1-s2-t2" name="CT-002: Tentar cadastrar um usuário com um e-mail já existente" line="15">
-<kw name="Email" owner="FakerLibrary">
-<msg time="2025-09-12T14:17:25.683577" level="INFO">${email} = silveirasophie@example.net</msg>
-<var>${email}</var>
-<status status="PASS" start="2025-09-12T14:17:25.683180" elapsed="0.000451"/>
+<test id="s1-s2-t2" name="CT-015: Tentar cadastrar produto sem autenticação" line="16">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.386589" level="INFO">&amp;{product} = { nome=Produto Sem Token | preco=100 | descricao=Teste sem auth | quantidade=10 }</msg>
+<var>&amp;{product}</var>
+<arg>nome=Produto Sem Token</arg>
+<arg>preco=100</arg>
+<arg>descricao=Teste sem auth</arg>
+<arg>quantidade=10</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.386161" elapsed="0.000484"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:05.544717" level="INFO">POST Request : url=http://3.86.250.45:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '96', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto Sem Token", "preco": "100", "descricao": "Teste sem auth", "quantidade": "10"}' 
+ </msg>
+<msg time="2025-09-15T17:50:05.544858" level="INFO">POST Response : url=http://3.86.250.45:3000/produtos 
+ status=401, reason=Unauthorized 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '103', 'Date': 'Mon, 15 Sep 2025 20:50:05 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:05.545037" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${product}</arg>
+<arg>expected_status=401</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.387143" elapsed="0.157926"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.546396" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>401</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.545573" elapsed="0.000921"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Token de acesso ausente, inválido, expirado ou usuário do token não existe mais</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.546963" elapsed="0.000873"/>
+</kw>
+<doc>AC: Usuários não autenticados não devem conseguir realizar ações na rota de Produtos</doc>
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="PASS" start="2025-09-15T17:50:05.381130" elapsed="0.167547"/>
+</test>
+<test id="s1-s2-t3" name="CT-016: Validar bloqueio de produto com nome duplicado (POST)" line="24">
+<kw name="Random Number" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:05.551664" level="INFO">${unique_id} = 390876</msg>
+<var>${unique_id}</var>
+<arg>digits=6</arg>
+<doc>Generate a random integer according to the following rules:</doc>
+<status status="PASS" start="2025-09-15T17:50:05.551161" elapsed="0.000563"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-12T14:17:25.684499" level="INFO">&amp;{user} = { nome=Teste Duplicado | email=silveirasophie@example.net | password=teste | administrador=true }</msg>
+<msg time="2025-09-15T17:50:05.553368" level="INFO">&amp;{product} = { nome=Produto Duplicado 390876 | preco=300 | descricao=Primeiro produto | quantidade=50 }</msg>
+<var>&amp;{product}</var>
+<arg>nome=Produto Duplicado ${unique_id}</arg>
+<arg>preco=300</arg>
+<arg>descricao=Primeiro produto</arg>
+<arg>quantidade=50</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.552639" elapsed="0.000792"/>
+</kw>
+<kw name="Cadastrar Novo Produto via API" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.555250" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.554449" elapsed="0.000897"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:05.713333" level="INFO">POST Request : url=http://3.86.250.45:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72A7guPAoXFmGckg', 'Content-Length': '105', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto Duplicado 390876", "preco": "300", "descricao": "Primeiro produto", "quantidade": "50"}' 
+ </msg>
+<msg time="2025-09-15T17:50:05.713445" level="INFO">POST Response : url=http://3.86.250.45:3000/produtos 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:05 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "n1YUg9WXErnyEK6z"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:05.713639" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${product_data}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.555561" elapsed="0.158141"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:50:05.713828" elapsed="0.000058"/>
+</return>
+<msg time="2025-09-15T17:50:05.714117" level="INFO">${response1} = &lt;Response [201]&gt;</msg>
+<var>${response1}</var>
+<arg>${product}</arg>
+<arg>${AUTH_TOKEN}</arg>
+<status status="PASS" start="2025-09-15T17:50:05.553908" elapsed="0.160253"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.716888" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response1.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.716027" elapsed="0.001162"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.718308" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5...</msg>
+<var>${headers}</var>
+<arg>Authorization=${AUTH_TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.717808" elapsed="0.000557"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:05.873513" level="INFO">POST Request : url=http://3.86.250.45:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72A7guPAoXFmGckg', 'Content-Length': '105', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto Duplicado 390876", "preco": "300", "descricao": "Primeiro produto", "quantidade": "50"}' 
+ </msg>
+<msg time="2025-09-15T17:50:05.873671" level="INFO">POST Response : url=http://3.86.250.45:3000/produtos 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '53', 'Date': 'Mon, 15 Sep 2025 20:50:05 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Já existe produto com esse nome"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:05.873867" level="INFO">${response2} = &lt;Response [400]&gt;</msg>
+<var>${response2}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${product}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.718722" elapsed="0.155190"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.876711" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response2.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.875593" elapsed="0.001229"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response2.json()}[message]</arg>
+<arg>Já existe produto com esse nome</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.878336" elapsed="0.000762"/>
+</kw>
+<doc>AC: Não deve ser possível realizar o cadastro de produtos com nomes já utilizados</doc>
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="PASS" start="2025-09-15T17:50:05.550071" elapsed="0.329389"/>
+</test>
+<test id="s1-s2-t4" name="CT-017: Validar criação de novo produto ao tentar atualizar com ID inexistente (PUT)" line="40">
+<kw name="Random Number" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:05.882547" level="INFO">${unique_id} = 622520</msg>
+<var>${unique_id}</var>
+<arg>digits=6</arg>
+<doc>Generate a random integer according to the following rules:</doc>
+<status status="PASS" start="2025-09-15T17:50:05.881959" elapsed="0.000649"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.883583" level="INFO">&amp;{product} = { nome=Produto PUT Novo 622520 | preco=400 | descricao=Produto criado via PUT | quantidade=75 }</msg>
+<var>&amp;{product}</var>
+<arg>nome=Produto PUT Novo ${unique_id}</arg>
+<arg>preco=400</arg>
+<arg>descricao=Produto criado via PUT</arg>
+<arg>quantidade=75</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.883145" elapsed="0.000484"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:05.884469" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5...</msg>
+<var>${headers}</var>
+<arg>Authorization=${AUTH_TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.883952" elapsed="0.000575"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:06.047129" level="INFO">PUT Request : url=http://3.86.250.45:3000/produtos/ID_INEXISTENTE_123 
+ path_url=/produtos/ID_INEXISTENTE_123 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72A7guPAoXFmGckg', 'Content-Length': '110', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto PUT Novo 622520", "preco": "400", "descricao": "Produto criado via PUT", "quantidade": "75"}' 
+ </msg>
+<msg time="2025-09-15T17:50:06.047254" level="INFO">PUT Response : url=http://3.86.250.45:3000/produtos/ID_INEXISTENTE_123 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '67', 'Date': 'Mon, 15 Sep 2025 20:50:05 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "id": "id deve ter exatamente 16 caracteres alfanuméricos"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:06.047439" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos/ID_INEXISTENTE_123</arg>
+<arg>json=${product}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:05.889804" elapsed="0.157681"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.049427" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.048574" elapsed="0.000951"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.049989" elapsed="0.000913"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>❌ CRITÉRIO DE ACEITAÇÃO NÃO IMPLEMENTADO</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.051223" elapsed="0.000384"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.052204" elapsed="0.001105"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📋 US-003: [API] Produtos</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.053691" elapsed="0.005789"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔍 CT-017: Validar criação de novo produto ao tentar atualizar com ID inexistente</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.060591" elapsed="0.000501"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📝 AC Esperado: "Caso não exista produto com o ID informado na hora do UPDATE, um novo produto deverá ser criado"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.061481" elapsed="0.004829"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>⚠️</arg>
+<arg>Comportamento Real: PUT com ID inexistente retorna erro 400</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.066737" elapsed="0.001727"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>💡 Status: NÃO IMPLEMENTADO na API ServeRest</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.068891" elapsed="0.002021"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.077889" elapsed="0.000999"/>
+</kw>
+<doc>AC: Caso não exista produto com o ID informado na hora do UPDATE, um novo produto deverá ser criado</doc>
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="PASS" start="2025-09-15T17:50:05.880881" elapsed="0.200454"/>
+</test>
+<test id="s1-s2-t5" name="CT-018: Validar bloqueio de nome duplicado na criação via PUT" line="58">
+<kw name="Random Number" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:06.086647" level="INFO">${unique_id} = 120808</msg>
+<var>${unique_id}</var>
+<arg>digits=6</arg>
+<doc>Generate a random integer according to the following rules:</doc>
+<status status="PASS" start="2025-09-15T17:50:06.086212" elapsed="0.000497"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.087942" level="INFO">&amp;{product_original} = { nome=Produto Original PUT 120808 | preco=200 | descricao=Produto original | quantidade=30 }</msg>
+<var>&amp;{product_original}</var>
+<arg>nome=Produto Original PUT ${unique_id}</arg>
+<arg>preco=200</arg>
+<arg>descricao=Produto original</arg>
+<arg>quantidade=30</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.087256" elapsed="0.000747"/>
+</kw>
+<kw name="Cadastrar Novo Produto via API" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.089285" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.088953" elapsed="0.000381"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:06.244683" level="INFO">POST Request : url=http://3.86.250.45:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72A7guPAoXFmGckg', 'Content-Length': '108', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto Original PUT 120808", "preco": "200", "descricao": "Produto original", "quantidade": "30"}' 
+ </msg>
+<msg time="2025-09-15T17:50:06.244809" level="INFO">POST Response : url=http://3.86.250.45:3000/produtos 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:06 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "3FJFb4NCf9aAKef6"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:06.244978" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${product_data}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.089490" elapsed="0.155530"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:50:06.245128" elapsed="0.000053"/>
+</return>
+<msg time="2025-09-15T17:50:06.245518" level="INFO">${response1} = &lt;Response [201]&gt;</msg>
+<var>${response1}</var>
+<arg>${product_original}</arg>
+<arg>${AUTH_TOKEN}</arg>
+<status status="PASS" start="2025-09-15T17:50:06.088449" elapsed="0.157118"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.247680" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response1.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.246792" elapsed="0.000993"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.248709" level="INFO">&amp;{product_duplicado} = { nome=Produto Original PUT 120808 | preco=250 | descricao=Tentativa duplicada | quantidade=40 }</msg>
+<var>&amp;{product_duplicado}</var>
+<arg>nome=Produto Original PUT ${unique_id}</arg>
+<arg>preco=250</arg>
+<arg>descricao=Tentativa duplicada</arg>
+<arg>quantidade=40</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.248246" elapsed="0.000513"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.249589" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5...</msg>
+<var>${headers}</var>
+<arg>Authorization=${AUTH_TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.249223" elapsed="0.000423"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:06.405720" level="INFO">PUT Request : url=http://3.86.250.45:3000/produtos/ID_INEXISTENTE_456 
+ path_url=/produtos/ID_INEXISTENTE_456 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmRvc29kaW9nb0BleGFtcGxlLm9yZyIsInBhc3N3b3JkIjoiXkojVTFeU250XiIsImlhdCI6MTc1Nzk2OTQwNSwiZXhwIjoxNzU3OTcwMDA1fQ.167idwBdn5Jj0SrHwW9EtLQS83w72A7guPAoXFmGckg', 'Content-Length': '111', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto Original PUT 120808", "preco": "250", "descricao": "Tentativa duplicada", "quantidade": "40"}' 
+ </msg>
+<msg time="2025-09-15T17:50:06.405857" level="INFO">PUT Response : url=http://3.86.250.45:3000/produtos/ID_INEXISTENTE_456 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '67', 'Date': 'Mon, 15 Sep 2025 20:50:06 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "id": "id deve ter exatamente 16 caracteres alfanuméricos"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:06.406177" level="INFO">${response2} = &lt;Response [400]&gt;</msg>
+<var>${response2}</var>
+<arg>serverest</arg>
+<arg>/produtos/ID_INEXISTENTE_456</arg>
+<arg>json=${product_duplicado}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.250012" elapsed="0.156213"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.411490" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response2.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.410542" elapsed="0.001049"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.412020" elapsed="0.001435"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>✅ CRITÉRIO DE ACEITAÇÃO IMPLEMENTADO</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.414164" elapsed="0.000303"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.414819" elapsed="0.001443"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📋 US-003: [API] Produtos</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.416603" elapsed="0.001713"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔍 CT-018: Validar bloqueio de nome duplicado na criação via PUT</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.418956" elapsed="0.003001"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📝 AC: "Produtos criados através do PUT não poderão ter nomes previamente cadastrados"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.422746" elapsed="0.000629"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>✅ Comportamento Real: API bloqueia nomes duplicados no PUT</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.423859" elapsed="0.009624"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>💡 Status: IMPLEMENTADO CORRETAMENTE</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.435802" elapsed="0.001070"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.437573" elapsed="0.002331"/>
+</kw>
+<doc>AC: Produtos criados através do PUT não poderão ter nomes previamente cadastrados</doc>
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="PASS" start="2025-09-15T17:50:06.082407" elapsed="0.361851"/>
+</test>
+<test id="s1-s2-t6" name="CT-019: Validar exclusão de produto que está em um carrinho (a fazer)" line="83">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>TESTE PENDENTE: Aguardando implementação da API de Carrinhos</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.449447" elapsed="0.000443"/>
+</kw>
+<kw name="Skip" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.450499" level="SKIP">Teste bloqueado - depende da API de Carrinhos</msg>
+<arg>Teste bloqueado - depende da API de Carrinhos</arg>
+<doc>Skips the rest of the current test.</doc>
+<status status="SKIP" start="2025-09-15T17:50:06.450199" elapsed="0.000573">Teste bloqueado - depende da API de Carrinhos</status>
+</kw>
+<doc>AC: Não deve ser possível excluir produtos que estão dentro de carrinhos - TESTE PENDENTE: Depende da API de Carrinhos</doc>
+<tag>Pendente</tag>
+<tag>Produtos</tag>
+<tag>US-003</tag>
+<status status="SKIP" start="2025-09-15T17:50:06.446480" elapsed="0.004879">Teste bloqueado - depende da API de Carrinhos</status>
+</test>
+<status status="PASS" start="2025-09-15T17:50:04.671695" elapsed="1.784684"/>
+</suite>
+<suite id="s1-s3" name="Usuarios" source="C:\Users\victo\Desktop\COMPASS.UOL\Sprint06\robot-serverest-challenge\tests\usuarios.robot">
+<kw name="Iniciar Sessão da API" owner="api_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:06.474572" level="INFO">Creating Session using : alias=serverest, url=http://3.86.250.45:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-15T17:50:06.474319" elapsed="0.000493"/>
+</kw>
+<status status="PASS" start="2025-09-15T17:50:06.473876" elapsed="0.001052"/>
+</kw>
+<test id="s1-s3-t1" name="CT-001: Cadastrar usuário com sucesso" line="7">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:06.486348" level="INFO">${email} = caua27@example.com</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:50:06.485866" elapsed="0.000541"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.487844" level="INFO">&amp;{user} = { nome=Robot Framework User | email=caua27@example.com | password=teste123 | administrador=true }</msg>
 <var>&amp;{user}</var>
-<arg>nome=Teste Duplicado</arg>
+<arg>nome=Robot Framework User</arg>
 <arg>email=${email}</arg>
-<arg>password=teste</arg>
+<arg>password=teste123</arg>
 <arg>administrador=true</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-12T14:17:25.683958" elapsed="0.000594"/>
+<status status="PASS" start="2025-09-15T17:50:06.486821" elapsed="0.001093"/>
 </kw>
 <kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
 <kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-09-12T14:17:28.529859" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D69C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:31.538548" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D6F10&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:34.732601" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7240&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:37.571911" level="FAIL">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</msg>
+<msg time="2025-09-15T17:50:06.803849" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '112', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Robot Framework User", "email": "caua27@example.com", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:06.803964" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:06 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "LfqMUuKP7rjO4m5Q"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:06.804262" level="INFO">${response} = &lt;Response [201]&gt;</msg>
 <var>${response}</var>
 <arg>serverest</arg>
 <arg>/usuarios</arg>
 <arg>json=${user_data}</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-09-12T14:17:25.685934" elapsed="11.901157">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<status status="PASS" start="2025-09-15T17:50:06.495369" elapsed="0.308951"/>
 </kw>
 <return>
 <value>${response}</value>
-<status status="NOT RUN" start="2025-09-12T14:17:37.587333" elapsed="0.000045"/>
+<status status="PASS" start="2025-09-15T17:50:06.804431" elapsed="0.000057"/>
 </return>
-<var>${response1}</var>
+<msg time="2025-09-15T17:50:06.804726" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
 <arg>${user}</arg>
-<status status="FAIL" start="2025-09-12T14:17:25.685274" elapsed="11.902316">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<status status="PASS" start="2025-09-15T17:50:06.494709" elapsed="0.310062"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.805947" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.805168" elapsed="0.001231"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Cadastro realizado com sucesso</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.812860" elapsed="0.000827"/>
+</kw>
+<doc>AC: Os vendedores (usuários) deverão possuir os campos NOME, E-MAIL, PASSWORD e ADMINISTRADOR</doc>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="PASS" start="2025-09-15T17:50:06.475282" elapsed="0.339152"/>
+</test>
+<test id="s1-s3-t2" name="CT-002: Validar bloqueio de e-mail duplicado no cadastro (POST)" line="16">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:06.821937" level="INFO">${email} = carlos-eduardo24@example.org</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:50:06.821432" elapsed="0.000569"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.825590" level="INFO">&amp;{user} = { nome=Usuario Original | email=carlos-eduardo24@example.org | password=teste123 | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Usuario Original</arg>
+<arg>email=${email}</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.823723" elapsed="0.001934"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:06.983742" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '118', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Original", "email": "carlos-eduardo24@example.org", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:06.983872" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:06 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "G8c0KdugEyDqXrRj"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:06.984049" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:06.829227" elapsed="0.154865"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:50:06.984201" elapsed="0.000174"/>
+</return>
+<msg time="2025-09-15T17:50:06.984600" level="INFO">${response1} = &lt;Response [201]&gt;</msg>
+<var>${response1}</var>
+<arg>${user}</arg>
+<status status="PASS" start="2025-09-15T17:50:06.828762" elapsed="0.155878"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:06.987227" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
 <arg>${response1.status_code}</arg>
 <arg>201</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:37.588005" elapsed="0.000047"/>
+<status status="PASS" start="2025-09-15T17:50:06.985387" elapsed="0.001943"/>
 </kw>
 <kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:07.143560" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '118', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Original", "email": "carlos-eduardo24@example.org", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:07.143683" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '53', 'Date': 'Mon, 15 Sep 2025 20:50:07 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Este email já está sendo usado"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:07.143875" level="INFO">${response2} = &lt;Response [400]&gt;</msg>
 <var>${response2}</var>
 <arg>serverest</arg>
 <arg>/usuarios</arg>
 <arg>json=${user}</arg>
 <arg>expected_status=400</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:37.588564" elapsed="0.000051"/>
+<status status="PASS" start="2025-09-15T17:50:06.988686" elapsed="0.155239"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.150039" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
 <arg>${response2.status_code}</arg>
 <arg>400</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:37.589036" elapsed="0.000108"/>
+<status status="PASS" start="2025-09-15T17:50:07.149152" elapsed="0.001127"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
 <arg>${response2.json()}[message]</arg>
 <arg>Este email já está sendo usado</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:37.591041" elapsed="0.000060"/>
+<status status="PASS" start="2025-09-15T17:50:07.151157" elapsed="0.000866"/>
 </kw>
+<doc>AC: Não deve ser possível criar um usuário com e-mail já utilizado</doc>
 <tag>US-001</tag>
 <tag>Usuarios</tag>
-<status status="FAIL" start="2025-09-12T14:17:25.681417" elapsed="11.910856">ConnectionError: HTTPConnectionPool(host='3.86.250.45', port=3000): Max retries exceeded with url: /usuarios (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7570&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+<status status="PASS" start="2025-09-15T17:50:06.819782" elapsed="0.332688"/>
 </test>
-<test id="s1-s2-t3" name="CT-003: Listar todos os usuários cadastrados" line="28">
+<test id="s1-s3-t3" name="CT-003: Validar bloqueio de provedores de e-mail não permitidos" line="28">
+<kw name="Random Number" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:07.161678" level="INFO">${unique_id} = 556459</msg>
+<var>${unique_id}</var>
+<arg>digits=6</arg>
+<doc>Generate a random integer according to the following rules:</doc>
+<status status="PASS" start="2025-09-15T17:50:07.161274" elapsed="0.000455"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.163204" level="INFO">&amp;{user_gmail} = { nome=Usuario Gmail 556459 | email=teste556459@gmail.com | password=teste123 | administrador=true }</msg>
+<var>&amp;{user_gmail}</var>
+<arg>nome=Usuario Gmail ${unique_id}</arg>
+<arg>email=teste${unique_id}@gmail.com</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.162537" elapsed="0.000723"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:07.319657" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '115', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Gmail 556459", "email": "teste556459@gmail.com", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:07.319800" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:07 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "CmLhyygv11DvhSh6"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:07.320395" level="INFO">${response1} = &lt;Response [201]&gt;</msg>
+<var>${response1}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_gmail}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.164544" elapsed="0.155904"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.321674" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response1.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.320992" elapsed="0.000781"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.323313" level="INFO">&amp;{user_hotmail} = { nome=Usuario Hotmail 556459 | email=teste556459@hotmail.com | password=teste123 | administrador=true }</msg>
+<var>&amp;{user_hotmail}</var>
+<arg>nome=Usuario Hotmail ${unique_id}</arg>
+<arg>email=teste${unique_id}@hotmail.com</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.322579" elapsed="0.000788"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:07.487470" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '119', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Hotmail 556459", "email": "teste556459@hotmail.com", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:07.487593" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:07 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "Ks1cvBtRGDmBuDh3"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:07.487884" level="INFO">${response2} = &lt;Response [201]&gt;</msg>
+<var>${response2}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_hotmail}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.323979" elapsed="0.163974"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.490077" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response2.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.489268" elapsed="0.000916"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.492087" elapsed="0.004299"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>❌ CRITÉRIO DE ACEITAÇÃO NÃO IMPLEMENTADO</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.498420" elapsed="0.002620"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.511851" elapsed="0.001266"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📋 US-001: [API] Usuários</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.513467" elapsed="0.003072"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔍 CT-003: Validar bloqueio de provedores de e-mail não permitidos</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.519835" elapsed="0.001740"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📝 AC Esperado: "Não deverá ser possível cadastrar usuários com e-mails de provedor gmail e hotmail"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.525442" elapsed="0.004226"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>⚠️</arg>
+<arg>Comportamento Real: API permite cadastro com @gmail.com e @hotmail.com</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.530089" elapsed="0.003314"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>💡 Status: NÃO IMPLEMENTADO na API ServeRest</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.533931" elapsed="0.012313"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.546583" elapsed="0.003328"/>
+</kw>
+<doc>AC: Não deverá ser possível cadastrar usuários com e-mails de provedor gmail e hotmail</doc>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="PASS" start="2025-09-15T17:50:07.154540" elapsed="0.396079"/>
+</test>
+<test id="s1-s3-t4" name="CT-004: Validar criação de novo usuário ao tentar atualizar com ID inexistente (PUT)" line="50">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:07.554354" level="INFO">${email} = breno31@example.com</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:50:07.553923" elapsed="0.000475"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.555157" level="INFO">&amp;{user} = { nome=Usuario Novo PUT | email=breno31@example.com | password=teste123 | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Usuario Novo PUT</arg>
+<arg>email=${email}</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.554669" elapsed="0.000542"/>
+</kw>
+<kw name="Atualizar Usuário Por ID via API" owner="api_keywords">
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:07.716840" level="INFO">PUT Request : url=http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 
+ path_url=/usuarios/ID_INEXISTENTE_123 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '109', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Novo PUT", "email": "breno31@example.com", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:07.716984" level="INFO">PUT Response : url=http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:07 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "unlHK1ZnBRTCEW1u"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:07.717166" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios/${user_id}</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.556152" elapsed="0.161059"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:50:07.717393" elapsed="0.000058"/>
+</return>
+<msg time="2025-09-15T17:50:07.717906" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>ID_INEXISTENTE_123</arg>
+<arg>${user}</arg>
+<status status="PASS" start="2025-09-15T17:50:07.555669" elapsed="0.162297"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.721333" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.720485" elapsed="0.000971"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Cadastro realizado com sucesso</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.722926" elapsed="0.001251"/>
+</kw>
+<doc>AC: Caso não seja encontrado usuário com o ID informado no PUT, um novo usuário deverá ser criado</doc>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="PASS" start="2025-09-15T17:50:07.553153" elapsed="0.171434"/>
+</test>
+<test id="s1-s3-t5" name="CT-005: Validar bloqueio de e-mail duplicado na atualização (PUT)" line="59">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:07.739330" level="INFO">${email1} = arthur-miguelfogaca@example.net</msg>
+<var>${email1}</var>
+<status status="PASS" start="2025-09-15T17:50:07.738964" elapsed="0.000424"/>
+</kw>
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:07.740228" level="INFO">${email2} = oliver83@example.org</msg>
+<var>${email2}</var>
+<status status="PASS" start="2025-09-15T17:50:07.739770" elapsed="0.000516"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.750071" level="INFO">&amp;{user_a} = { nome=Usuario A | email=arthur-miguelfogaca@example.net | password=teste123 | administrador=true }</msg>
+<var>&amp;{user_a}</var>
+<arg>nome=Usuario A</arg>
+<arg>email=${email1}</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.749492" elapsed="0.000646"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:07.752247" level="INFO">&amp;{user_b} = { nome=Usuario B | email=oliver83@example.org | password=teste123 | administrador=true }</msg>
+<var>&amp;{user_b}</var>
+<arg>nome=Usuario B</arg>
+<arg>email=${email2}</arg>
+<arg>password=teste123</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.751664" elapsed="0.000640"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:07.909331" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '114', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario A", "email": "arthur-miguelfogaca@example.net", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:07.909576" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:07 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "Hx29GKrcuHNKKO5I"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:07.909967" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.753448" elapsed="0.156585"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:50:07.910175" elapsed="0.000065"/>
+</return>
+<msg time="2025-09-15T17:50:07.910490" level="INFO">${response_a} = &lt;Response [201]&gt;</msg>
+<var>${response_a}</var>
+<arg>${user_a}</arg>
+<status status="PASS" start="2025-09-15T17:50:07.752964" elapsed="0.157577"/>
+</kw>
+<kw name="Cadastrar Novo Usuário via API" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:08.066334" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '103', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario B", "email": "oliver83@example.org", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:08.066473" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:07 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "6NNbahM8BBC4xqxN"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:08.066709" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:07.912352" elapsed="0.154419"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-09-15T17:50:08.066877" elapsed="0.000058"/>
+</return>
+<msg time="2025-09-15T17:50:08.067167" level="INFO">${response_b} = &lt;Response [201]&gt;</msg>
+<var>${response_b}</var>
+<arg>${user_b}</arg>
+<status status="PASS" start="2025-09-15T17:50:07.911815" elapsed="0.155398"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-09-15T17:50:08.069427" level="INFO">${user_a_id} = Hx29GKrcuHNKKO5I</msg>
+<var>${user_a_id}</var>
+<arg>${response_a.json()}</arg>
+<arg>_id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.068498" elapsed="0.000977"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${user_a}</arg>
+<arg>email=${email2}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.071263" elapsed="0.001069"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:08.242940" level="INFO">PUT Request : url=http://3.86.250.45:3000/usuarios/Hx29GKrcuHNKKO5I 
+ path_url=/usuarios/Hx29GKrcuHNKKO5I 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '103', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario A", "email": "oliver83@example.org", "password": "teste123", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:08.243152" level="INFO">PUT Response : url=http://3.86.250.45:3000/usuarios/Hx29GKrcuHNKKO5I 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '53', 'Date': 'Mon, 15 Sep 2025 20:50:08 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Este email já está sendo usado"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:08.243342" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios/${user_a_id}</arg>
+<arg>json=${user_a}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.088425" elapsed="0.154959"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:08.246361" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.245388" elapsed="0.001077"/>
+</kw>
+<doc>AC: Não deve ser possível cadastrar usuário com e-mail já utilizado utilizando PUT</doc>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="PASS" start="2025-09-15T17:50:07.733610" elapsed="0.514414"/>
+</test>
+<test id="s1-s3-t6" name="CT-006: Validar regra de senha (mínimo de 5 caracteres)" line="75">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:08.251759" level="INFO">${email} = siqueiraana-julia@example.net</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:50:08.251429" elapsed="0.000378"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:08.253679" level="INFO">&amp;{user} = { nome=Usuario Senha Curta | email=siqueiraana-julia@example.net | password=1234 | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Usuario Senha Curta</arg>
+<arg>email=${email}</arg>
+<arg>password=1234</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.253065" elapsed="0.000685"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:08.420304" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '118', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Senha Curta", "email": "siqueiraana-julia@example.net", "password": "1234", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:08.420427" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:08 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "ufyM5C4KeiTOHYiD"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:08.420639" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.264824" elapsed="0.155869"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:08.422935" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.422244" elapsed="0.000794"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.423361" elapsed="0.001677"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>❌ CRITÉRIO DE ACEITAÇÃO NÃO IMPLEMENTADO</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.426864" elapsed="0.002838"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.439436" elapsed="0.000438"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📋 US-001: [API] Usuários</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.441680" elapsed="0.008154"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔍 CT-006: Validar regra de senha (mínimo de 5 caracteres)</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.451045" elapsed="0.000684"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📝 AC Esperado: "As senhas devem possuír no mínimo 5 caracteres"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.452304" elapsed="0.001045"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>⚠️</arg>
+<arg>Comportamento Real: API aceita senha com 4 caracteres</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.453702" elapsed="0.001726"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>💡 Status: NÃO IMPLEMENTADO na API ServeRest</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.455718" elapsed="0.002586"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.458644" elapsed="0.003712"/>
+</kw>
+<doc>AC: As senhas devem possuír no mínimo 5 caracteres e no máximo 10 caracteres</doc>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="PASS" start="2025-09-15T17:50:08.249745" elapsed="0.213042"/>
+</test>
+<test id="s1-s3-t7" name="CT-007: Validar regra de senha (máximo de 10 caracteres)" line="92">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-15T17:50:08.470689" level="INFO">${email} = dalmeida@example.net</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-15T17:50:08.470316" elapsed="0.000437"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-15T17:50:08.471964" level="INFO">&amp;{user} = { nome=Usuario Senha Longa | email=dalmeida@example.net | password=12345678901 | administrador=true }</msg>
+<var>&amp;{user}</var>
+<arg>nome=Usuario Senha Longa</arg>
+<arg>email=${email}</arg>
+<arg>password=12345678901</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.471385" elapsed="0.000662"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:08.628857" level="INFO">POST Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '116', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario Senha Longa", "email": "dalmeida@example.net", "password": "12345678901", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-15T17:50:08.629074" level="INFO">POST Response : url=http://3.86.250.45:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Mon, 15 Sep 2025 20:50:08 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "a98umouPfcuikLbv"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:08.629276" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${user}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.473116" elapsed="0.156245"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:08.632848" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.631950" elapsed="0.001010"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.633502" elapsed="0.000717"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>❌ CRITÉRIO DE ACEITAÇÃO NÃO IMPLEMENTADO</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.634644" elapsed="0.000376"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.635383" elapsed="0.000760"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📋 US-001: [API] Usuários</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.636445" elapsed="0.005341"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔍 CT-007: Validar regra de senha (máximo de 10 caracteres)</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.646840" elapsed="0.022317"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📝 AC Esperado: "As senhas devem possuír no máximo 10 caracteres"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.680337" elapsed="0.003948"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>⚠️</arg>
+<arg>Comportamento Real: API aceita senha com 11+ caracteres</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.684615" elapsed="0.000852"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>💡 Status: NÃO IMPLEMENTADO na API ServeRest</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.685843" elapsed="0.012227"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>========================================</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.698441" elapsed="0.001712"/>
+</kw>
+<doc>AC: As senhas devem possuír no mínimo 5 caracteres e no máximo 10 caracteres</doc>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="PASS" start="2025-09-15T17:50:08.465382" elapsed="0.236834"/>
+</test>
+<test id="s1-s3-t8" name="CT-008: Validar ações em usuários inexistentes" line="109">
 <kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2025-09-12T14:17:40.427195" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:43.484807" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714380&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:46.909197" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B527146B0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
+<msg time="2025-09-15T17:50:08.866528" level="INFO">GET Request : url=http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 
+ path_url=/usuarios/ID_INEXISTENTE_123 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-09-15T17:50:08.866651" level="INFO">GET Response : url=http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '67', 'Date': 'Mon, 15 Sep 2025 20:50:08 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "id": "id deve ter exatamente 16 caracteres alfanuméricos"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:08.866997" level="INFO">${response_get} = &lt;Response [400]&gt;</msg>
+<var>${response_get}</var>
+<arg>serverest</arg>
+<arg>/usuarios/ID_INEXISTENTE_123</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.708603" elapsed="0.158448"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:08.868949" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response_get.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.868051" elapsed="0.001016"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Resposta GET usuário inexistente: ${response_get.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-15T17:50:08.869405" elapsed="0.002053"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:09.024664" level="INFO">DELETE Request : url=http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 
+ path_url=/usuarios/ID_INEXISTENTE_123 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-09-15T17:50:09.024790" level="INFO">DELETE Response : url=http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '46', 'Date': 'Mon, 15 Sep 2025 20:50:08 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Nenhum registro excluído"
+} 
+ </msg>
+<msg time="2025-09-15T17:50:09.025018" level="FAIL">Url: http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 Expected status: 200 != 400</msg>
+<var>${response_delete}</var>
+<arg>serverest</arg>
+<arg>/usuarios/ID_INEXISTENTE_123</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-15T17:50:08.871838" elapsed="0.158080">Url: http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 Expected status: 200 != 400</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response_delete.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-09-15T17:50:09.030444" elapsed="0.000045"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Resposta DELETE usuário inexistente: ${response_delete.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2025-09-15T17:50:09.031030" elapsed="0.000045"/>
+</kw>
+<doc>AC: Não deverá ser possível fazer ações e chamadas para usuários inexistentes</doc>
+<tag>US-001</tag>
+<tag>Usuarios</tag>
+<status status="FAIL" start="2025-09-15T17:50:08.704259" elapsed="0.327338">Url: http://3.86.250.45:3000/usuarios/ID_INEXISTENTE_123 Expected status: 200 != 400</status>
+</test>
+<test id="s1-s3-t9" name="CT-009: Listar todos os usuários" line="120">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-09-15T17:50:09.186988" level="INFO">GET Request : url=http://3.86.250.45:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-09-15T17:50:09.187127" level="INFO">GET Response : url=http://3.86.250.45:3000/usuarios 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '5094', 'Date': 'Mon, 15 Sep 2025 20:50:09 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "quantidade": 23,
+    "usuarios": [
+        {
+            "nome": "Fulano da Silva",
+            "email": "fulano@qa.com",
+            "password": "teste",
+            "administrador": "true",
+            "_id": "0uxuPY0cbmQhpEz1"
+        },
+        {
+            "nome": "Usuario B",
+            "email": "oliver83@example.org",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "6NNbahM8BBC4xqxN"
+        },
+        {
+            "nome": "Luiz Fernando Monteiro",
+            "email": "cardosodiogo@example.org",
+            "password": "^J#U1^Snt^",
+            "administrador": "true",
+            "_id": "Al8UfSKKX8lFauDR"
+        },
+        {
+            "nome": "Usuario Gmail 556459",
+            "email": "teste556459@gmail.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "CmLhyygv11DvhSh6"
+        },
+        {
+            "nome": "Usuario B",
+            "email": "tfonseca@example.org",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "DNe1tEAgInpzjqLG"
+        },
+        {
+            "nome": "Usuario Original",
+            "email": "carlos-eduardo24@example.org",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "G8c0KdugEyDqXrRj"
+        },
+        {
+            "nome": "Usuario A",
+            "email": "arthur-miguelfogaca@example.net",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "Hx29GKrcuHNKKO5I"
+        },
+        {
+            "nome": "Usuario Hotmail 556459",
+            "email": "teste556459@hotmail.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "Ks1cvBtRGDmBuDh3"
+        },
+        {
+            "nome": "Usuario Senha Curta",
+            "email": "ksa@example.org",
+            "password": "1234",
+            "administrador": "true",
+            "_id": "LccHI0hFQfaB0rie"
+        },
+        {
+            "nome": "Robot Framework User",
+            "email": "caua27@example.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "LfqMUuKP7rjO4m5Q"
+        },
+        {
+            "nome": "Usuario Novo PUT",
+            "email": "joaquim49@example.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "QzCOqRyhTWaHcvpS"
+        },
+        {
+            "nome": "Robot Framework User",
+            "email": "fborges@example.org",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "UrD5vMAguWmIp3bU"
+        },
+        {
+            "nome": "Usuario Senha Longa",
+            "email": "dalmeida@example.net",
+            "password": "12345678901",
+            "administrador": "true",
+            "_id": "a98umouPfcuikLbv"
+        },
+        {
+            "nome": "Usuario Token Expira",
+            "email": "caleb44@example.org",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "gznI0sOsYZ6VxTr4"
+        },
+        {
+            "nome": "Usuario Senha Longa",
+            "email": "nrodrigues@example.org",
+            "password": "12345678901",
+            "administrador": "true",
+            "_id": "m5j2jy79PAgt0GEs"
+        },
+        {
+            "nome": "Usuario A",
+            "email": "camposjosue@example.org",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "mYF3FmGKAcvt2suu"
+        },
+        {
+            "nome": "Usuario Gmail 507217",
+            "email": "teste507217@gmail.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "nwRQOOeMyyl11yAV"
+        },
+        {
+            "nome": "Usuario Login",
+            "email": "sdas-neves@example.net",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "nzgGQ67AvM57on95"
+        },
+        {
+            "nome": "Usuario Hotmail 507217",
+            "email": "teste507217@hotmail.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "ofVm1OM7ETMraA9a"
+        },
+        {
+            "nome": "Usuario Senha Curta",
+            "email": "siqueiraana-julia@example.net",
+            "password": "1234",
+            "administrador": "true",
+            "_id": "ufyM5C4KeiTOHYiD"
+        },
+        {
+            "nome": "Usuario Novo PUT",
+            "email": "breno31@example.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "unlHK1ZnBRTCEW1u"
+        },
+        {
+            "nome": "Usuario Senha Errada",
+            "email": "salmeida@example.org",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "w9ixGWd8iMLMgS1h"
+        },
+        {
+            "nome": "Usuario Original",
+            "email": "maria-julia90@example.net",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "xqITilekcEm0SVKr"
+        }
+    ]
+} 
+ </msg>
+<msg time="2025-09-15T17:50:09.187412" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
 <arg>serverest</arg>
 <arg>/usuarios</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-09-12T14:17:37.595925" elapsed="12.169416">Execution terminated by signal</status>
+<status status="PASS" start="2025-09-15T17:50:09.033667" elapsed="0.153792"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-15T17:50:09.189351" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:49.765755" elapsed="0.000049"/>
+<status status="PASS" start="2025-09-15T17:50:09.188536" elapsed="0.000922"/>
 </kw>
 <kw name="Dictionary Should Contain Key" owner="Collections">
 <arg>${response.json()}</arg>
 <arg>usuarios</arg>
 <doc>Fails if ``key`` is not found from ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:49.766104" elapsed="0.000028"/>
+<status status="PASS" start="2025-09-15T17:50:09.190274" elapsed="0.002597"/>
 </kw>
-<kw name="Get From Dictionary" owner="Collections">
-<var>${users_list}</var>
+<kw name="Dictionary Should Contain Key" owner="Collections">
 <arg>${response.json()}</arg>
-<arg>usuarios</arg>
-<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:49.766325" elapsed="0.000022"/>
+<arg>quantidade</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-09-15T17:50:09.197359" elapsed="0.000888"/>
 </kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Total de usuários encontrados: ${response.json()}[quantidade]</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:49.766535" elapsed="0.000024"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Lista de usuários: ${users_list}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2025-09-12T14:17:49.766738" elapsed="0.000023"/>
-</kw>
+<doc>DoD: CRUD de cadastro de vendedores (usuários) implementado (LISTAR)</doc>
 <tag>US-001</tag>
 <tag>Usuarios</tag>
-<status status="FAIL" start="2025-09-12T14:17:37.594638" elapsed="12.172494">Execution terminated by signal</status>
+<status status="PASS" start="2025-09-15T17:50:09.033008" elapsed="0.167015"/>
 </test>
-<test id="s1-s2-t4" name="CT-007: Deletar um usuário existente com sucesso" line="37">
-<tag>robot:exit</tag>
-<tag>US-001</tag>
-<tag>Usuarios</tag>
-<status status="FAIL" start="2025-09-12T14:17:49.770344" elapsed="0.001226">Test execution stopped due to a fatal error.</status>
-</test>
-<status status="FAIL" start="2025-09-12T14:17:13.762434" elapsed="36.012722"/>
+<status status="FAIL" start="2025-09-15T17:50:06.464788" elapsed="2.738313"/>
 </suite>
-<status status="FAIL" start="2025-09-12T14:17:00.412513" elapsed="49.367697"/>
+<status status="FAIL" start="2025-09-15T17:39:02.125795" elapsed="667.079813"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="6" skip="0">All Tests</stat>
+<stat pass="17" fail="1" skip="1">All Tests</stat>
 </total>
 <tag>
-<stat info="combined" combined="NOT robot:exit" pass="0" fail="5" skip="0">NOT robot:exit</stat>
-<stat pass="0" fail="2" skip="0">Produtos</stat>
-<stat pass="0" fail="4" skip="0">US-001</stat>
-<stat pass="0" fail="2" skip="0">US-003</stat>
-<stat pass="0" fail="4" skip="0">Usuarios</stat>
+<stat pass="4" fail="0" skip="0">Login</stat>
+<stat pass="0" fail="0" skip="1">Pendente</stat>
+<stat pass="5" fail="0" skip="1">Produtos</stat>
+<stat pass="1" fail="0" skip="0">Slow</stat>
+<stat pass="8" fail="1" skip="0">US-001</stat>
+<stat pass="4" fail="0" skip="0">US-002</stat>
+<stat pass="5" fail="0" skip="1">US-003</stat>
+<stat pass="8" fail="1" skip="0">Usuarios</stat>
 </tag>
 <suite>
-<stat name="Tests" id="s1" pass="0" fail="6" skip="0">Tests</stat>
-<stat name="Produtos" id="s1-s1" pass="0" fail="2" skip="0">Tests.Produtos</stat>
-<stat name="Usuarios" id="s1-s2" pass="0" fail="4" skip="0">Tests.Usuarios</stat>
+<stat name="Tests" id="s1" pass="17" fail="1" skip="1">Tests</stat>
+<stat name="Login" id="s1-s1" pass="4" fail="0" skip="0">Tests.Login</stat>
+<stat name="Produtos" id="s1-s2" pass="5" fail="0" skip="1">Tests.Produtos</stat>
+<stat name="Usuarios" id="s1-s3" pass="8" fail="1" skip="0">Tests.Usuarios</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2025-09-12T14:17:04.694987" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5252AF90&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:07.705557" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255AFD0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:10.909503" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B5255B250&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:16.593557" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52630050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:19.590202" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52533890&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:22.819862" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D58C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:28.529859" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D69C0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:31.538548" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D6F10&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:34.732601" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B526D7240&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:40.427195" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714050&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:43.484807" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B52714380&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
-<msg time="2025-09-12T14:17:46.909197" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000016B527146B0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /usuarios</msg>
 </errors>
 </robot>
