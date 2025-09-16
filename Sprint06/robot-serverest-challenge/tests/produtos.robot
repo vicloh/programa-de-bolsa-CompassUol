@@ -43,17 +43,9 @@ CT-017: Validar criação de novo produto ao tentar atualizar com ID inexistente
     ${unique_id}=    FakerLibrary.Random Number    digits=6
     &{product}=    Create Dictionary    nome=Produto PUT Novo ${unique_id}    preco=400    descricao=Produto criado via PUT    quantidade=75
     ${headers}=    Create Dictionary    Authorization=${AUTH_TOKEN}
-    ${response}=    PUT On Session    serverest    /produtos/ID_INEXISTENTE_123    json=${product}    headers=${headers}    expected_status=400
-    Should Be Equal As Integers    ${response.status_code}    400
-    Log To Console    \n========================================
-    Log To Console    ❌ CRITÉRIO DE ACEITAÇÃO NÃO IMPLEMENTADO
-    Log To Console    ========================================
-    Log To Console    📋 US-003: [API] Produtos
-    Log To Console    🔍 CT-017: Validar criação de novo produto ao tentar atualizar com ID inexistente
-    Log To Console    📝 AC Esperado: "Caso não exista produto com o ID informado na hora do UPDATE, um novo produto deverá ser criado"
-    Log To Console    ⚠️  Comportamento Real: PUT com ID inexistente retorna erro 400
-    Log To Console    💡 Status: NÃO IMPLEMENTADO na API ServeRest
-    Log To Console    ========================================
+    ${response}=    PUT On Session    serverest    /produtos/ID_INEXISTENTE_123    json=${product}    headers=${headers}
+    Should Be Equal As Integers    ${response.status_code}    201
+    Should Be Equal As Strings    ${response.json()}[message]    Cadastro realizado com sucesso
 
 CT-018: Validar bloqueio de nome duplicado na criação via PUT
     [Documentation]    AC: Produtos criados através do PUT não poderão ter nomes previamente cadastrados
